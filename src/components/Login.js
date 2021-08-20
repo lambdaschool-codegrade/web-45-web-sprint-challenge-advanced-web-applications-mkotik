@@ -1,25 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Login = () => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  const error = "";
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
   //replace with error state
+
+  const handleOnChange = (e) => {
+    setError("");
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    if (formData.username !== "Lambda" || formData.password !== "School") {
+      setError("Login information is incorrect");
+    }
+    axios
+      .post("http://localhost:5000/api/login", formData)
+      .then((res) => {
+        localStorage.setItem("token", res.data.payload);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
-        <form className="d-flex flex-column justify-content-center align-items-center p-3">
-          <input name="username" placeholder="Username" className="mb-2" />
+        <form
+          className="d-flex flex-column justify-content-center align-items-center p-3"
+          onSubmit={handleOnSubmit}
+        >
           <input
+            name="username"
+            placeholder="Username"
+            className="mb-2"
+            id="username"
+            onChange={handleOnChange}
+          />
+          <input
+            id="password"
             name="password"
             placeholder="Password"
             type="password"
             className="mb-2"
+            onChange={handleOnChange}
           />
-          <button type="submit">Submit</button>
+          <button type="submit" className="mt-0">
+            Submit
+          </button>
         </form>
       </div>
 
