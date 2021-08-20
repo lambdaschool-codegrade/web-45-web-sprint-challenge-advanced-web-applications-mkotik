@@ -5,7 +5,6 @@ import BubblePage from "./components/BubblePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import axiosWithAuth from "./helpers/axiosWithAuth";
-
 import "./styles.scss";
 import PrivateRoute from "./components/PrivateRoute";
 

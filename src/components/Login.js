@@ -54,7 +54,7 @@ const Login = (props) => {
             className="mb-2"
             onChange={handleOnChange}
           />
-          <button type="submit" className="mt-0">
+          <button type="submit" className="mt-0" id="submit">
             Submit
           </button>
         </form>
