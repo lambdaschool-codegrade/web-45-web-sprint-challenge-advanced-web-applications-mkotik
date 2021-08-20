@@ -38,7 +38,7 @@ test("Executes handleDelete and toggleEdit property when the 'x' icon is clicked
     () => expect(fakeDelete.mock.results.length === 1).toBeTruthy(),
     0
   );
-  setTimeout(() => expect(fakeEdit.mock.results.length === 11).toBeTruthy(), 0);
+  setTimeout(() => expect(fakeEdit.mock.results.length === 1).toBeTruthy(), 0);
   //   I turned the bottom two into callbacks so they would be executed after api calls. I tried working with waitFor and await, nothing worked out.
 });
 
